@@ -15,6 +15,10 @@ public class TreeSet<T extends Comparable<T>> implements Set<T> {
 
 	@Override
 	public boolean add(T element) {
+		if(root == null){
+			root = new Node<>(element);
+			size++;
+		}
 		return add(root, element);
 	}
 
@@ -26,12 +30,40 @@ public class TreeSet<T extends Comparable<T>> implements Set<T> {
 	 * @param element
 	 * @return true if element is added, false if it is already in the tree.
 	 */
-	private boolean add(Node<T> current, T element) {
-		return false;
+	private boolean add(Node<T> current, T element)
+	{
+
+		int cmp = current.element.compareTo(element);
+
+		if(contains(element))
+			return false;
+
+		if(cmp > 0){
+
+			if(current.left == null){
+				current.left = new Node<>(element);
+				size++;
+				return true;
+			}
+			current = current.left;
+			return add(current, element);
+		}
+
+		else {
+
+			if(current.right == null){
+				current.right = new Node<>(element);
+				size++;
+				return true;
+			}
+			current = current.right;
+			return add(current, element);
+		}
 	}
 
 	@Override
-	public boolean contains(T element) {
+	public boolean contains(T element)
+	{
 		return contains(root, element);
 	}
 
@@ -44,8 +76,26 @@ public class TreeSet<T extends Comparable<T>> implements Set<T> {
 	 * @param element
 	 * @return
 	 */
-	private boolean contains(Node<T> current, T element) {
-		return false;
+	private boolean contains(Node<T> current, T element)
+	{
+		if (current == null)
+			return false;
+
+		int cmp = current.element.compareTo(element);
+
+		if (cmp == 0)
+			return true;
+
+		else if(cmp > 0){
+			current = current.left;
+			return contains(current,element);
+		}
+
+		else {
+			current = current.right;
+			return  contains(current,element);
+		}
+
 	}
 
 	@Override
