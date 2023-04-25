@@ -49,7 +49,7 @@ i.e. the left subtree of a given node contains values that are strictly less tha
 
 2. `boolean contains(Node<T> current, T element)`
 
-   - Contains is behaves similarly to binary search where it goes down the tree, and for each node, checks if the element its trying to find would be in the left or right subtrees.
+   - Contains behaves similarly to binary search where it goes down the tree, and for each node, checks if the element its trying to find would be in the left or right subtrees.
 
    ![Contains](./images/5-Contains.png)
 
